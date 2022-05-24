@@ -1,5 +1,8 @@
-import axios from 'axios'
-axios.defaults.baseURL='http://localhost:3000/'
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3000/";
 export default {
-    name: 'axios'
-}
+  name: "axios",
+};
+axios.get("/api/auth/signup").then((Response) => {
+  console.log(Response);
+});

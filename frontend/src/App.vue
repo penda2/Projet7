@@ -1,7 +1,7 @@
 <template>
   <div>
-    <img alt="logo groupomania" src="./assets/icon-left-font.png" class="img">
-      <router-view/>
+    <img alt="logo groupomania" src="./assets/icon-left-font.png" class="img" />
+    <router-view />
   </div>
 </template>
 
@@ -11,7 +11,6 @@
   margin: 0;
   padding: 0;
 }
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
@@ -33,7 +32,8 @@ nav a.router-link-exact-active {
   color: #c77677d1;
 }
 
-#form-group, #form-group2 {
+#form-group,
+#form-group2 {
   margin: 0;
   padding: 0 0 40px 0;
   width: 360px;
@@ -45,13 +45,12 @@ nav a.router-link-exact-active {
   box-sizing: border-box;
 }
 #form-group {
-    transform: translate(-50%, -25%);
+  transform: translate(-50%, -25%);
 }
 
 #form-group2 {
   transform: translate(-50%, -15%);
 }
-
 
 input {
   width: 90%;
@@ -63,7 +62,7 @@ input {
   box-shadow: 2px 2px 5px #9d9d9d35;
 }
 .form-ctrl {
-  margin: 25px 10px ;
+  margin: 25px 10px;
 }
 .input-focus:hover {
   border: 2px solid #063565d7;
@@ -80,7 +79,7 @@ h1 {
   background: #ffffff;
   border: 2px solid #063565d7;
 }
-.form-ctrl{
+.form-ctrl {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
