@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user");
-
+const auth = require("./middleware/auth");
 const path = require("path");
 const helmet = require("helmet");
 require("dotenv").config();
@@ -13,7 +13,7 @@ const db = mysql.createConnection({
   host: "localhost",
   user: `${process.env.DB_USER}`,
   password: `${process.env.DB_PASSWORD}`,
-  database: "Groupomania",
+  database: "groupomania",
 });
 db.connect((error) => {
   if (error) {
@@ -47,7 +47,11 @@ app.use((req, res, next) => {
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("api/auth/", userRoutes);
+app.use("api/auth/signup", userRoutes);
+
+app.get("/signup", function (req, res) {
+  res.send("résultat");
+});
 
 /*
 //test affichage http://localhost:3000/

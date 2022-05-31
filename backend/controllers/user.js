@@ -9,8 +9,11 @@ exports.signup = (req, res, next) => {
     .hash(req.body.password, 10)
     .then((hash) => {
       const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
         email: req.body.email,
         password: hash,
+        passwordConfirm: hash,
       });
       user
         .save()
@@ -44,3 +47,16 @@ exports.login = (req, res, next) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+/*
+exports.getAllUsers = (req, res, next) => {
+  res.send("Liste utilisateurs");
+};
+
+exports.createNewUser = (req, res, next) => {
+  res.send("créer nouvel utilisateurs");
+};
+
+exports.getUserById = (req, res, next) => {
+  res.send("Trouver utilisateur par son Id");
+};
+*/
