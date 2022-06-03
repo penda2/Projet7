@@ -91,7 +91,7 @@ export default {
   methods: {
     handleSubmit() {
       axios
-        .post("/signup", {
+        .post("auth/signup", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
