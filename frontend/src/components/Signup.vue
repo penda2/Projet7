@@ -69,25 +69,7 @@ export default {
       passwordConfirm: "",
     };
   },
-  /* methods: {
-    handleSubmit() {
-      const userSign = {
-        firstName: this.firstName,
-        lastName: this.lastName,
-        email: this.email,
-        password: this.password,
-        passwordConfirm: this.passwordConfirm,
-      };
-      console.log(userSign);
 
-      axios
-        .post("/signup", userSign)
-        .then((res) => console.log(res.data))
-        .catch((res) => console.log(err));
-      //  this.$router.push('/login');
-    },
-  },
-*/
   methods: {
     handleSubmit() {
       axios
