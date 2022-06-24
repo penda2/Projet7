@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" id="form-group2">
+  <form @submit.prevent="handleSubmit" id="form-group">
     <h1>S'inscrire</h1>
     <div class="form-ctrl">
       <label>Prénom</label>
@@ -51,7 +51,9 @@
         name="passwordConfirm"
       />
     </div>
-    <input type="submit" class="btn-connect" value="Créer un compte" />
+    <div class="form-ctrl">
+      <input type="submit" class="btn-connect" value="Créer un compte" />
+    </div>
   </form>
 </template>
 
@@ -73,7 +75,7 @@ export default {
   methods: {
     handleSubmit() {
       axios
-        .post("auth/signup", {
+        .post("/auth/signup", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -82,8 +84,15 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-        });
+          this.$router.push('/login')
+
+        }).catch(error => {
+          console.log(error);
+        })
+        
+        
     },
   },
+
 };
 </script>

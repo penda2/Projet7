@@ -9,16 +9,9 @@ const helmet = require("helmet");
 require("dotenv").config();
 const mysql = require("mysql");
 const db = require("./database");
-const cors = require("cors");
 
 const app = express();
 
-const { Console } = require("console");
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
 
 app.use(helmet()); // Protège l'application express de certaines vulnérabilités des headers HTTP
 
@@ -37,13 +30,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.use("api/auth/", userRoutes);
-
-
-
+app.use("/api/auth", userRoutes);
 
 
 module.exports = app;

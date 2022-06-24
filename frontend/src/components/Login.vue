@@ -19,8 +19,13 @@
         placeholder="Mot de passe"
       />
     </div>
-    <input type="submit" class="btn-connect" value="Connexion" />
-    <input type="submit" class="btn-subscribe" value="Créer un compte" />
+    <div class="form-ctrl">
+      <input type="submit" class="btn-connect" value="Connexion" />
+    </div>
+    <div class="form-ctrl">
+      <input type="submit" class="btn-subscribe" value="Créer un compte" />
+    </div>
+    
   </form>
 </template>
 
@@ -42,9 +47,14 @@ export default {
         password: this.password,
       };
       axios
-        .post("login", user)
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err));
+        .post("/auth/login", user)
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push('/')
+
+        }).catch(error => {
+          console.log(error);
+        })
     },
   },
 };
