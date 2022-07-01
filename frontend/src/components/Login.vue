@@ -49,14 +49,14 @@ export default {
       axios
         .post("/auth/login", user)
         .then((response) => {
-          console.log(response.data);
-          this.$router.push('/')
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token
+         this.$router.push('/')
 
         }).catch(error => {
           console.log(error);
         })
-    },
-  },
+    }
+  }
 };
 </script>
 

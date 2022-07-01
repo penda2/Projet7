@@ -36,13 +36,12 @@ export default {
   methods: {
     createPost() {
       const userPost = {
-        userId: this.userId,
         title: this.title,
         post: this.post,
-        image: this.image
+        image: this.image,
       };
       axios
-        .post("/auth/post", userPost)
+        .post("/posts/", userPost)
         .then((response) => {
           console.log(response.data);
           this.$router.push('/')

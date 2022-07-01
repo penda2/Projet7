@@ -54,7 +54,7 @@ else {
         });
       else {
         const token = jwt.sign(
-          { id: results[0].id },
+          { userId: results[0].id },
           process.env.CODE_TOKEN,
           { expiresIn: "24h",}
         );

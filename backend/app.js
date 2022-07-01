@@ -3,6 +3,7 @@ const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user");
+const postsRoutes = require('./routes/posts')
 const auth = require("./middleware/auth");
 const path = require("path");
 const helmet = require("helmet");
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 app.use("/api/auth", userRoutes);
+app.use('/api/posts', postsRoutes);
 
 
 module.exports = app;

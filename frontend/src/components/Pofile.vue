@@ -23,32 +23,9 @@
 
 <script>
 import axios from "axios";
-
 export default {
-  name: "Posts",
-  data() {
-    return {
-      posts: [],
-    }
-  },
-  methods: {
-    getAllPosts() {
-      const userPost = {
-        userId: this.userId,
-        title: this.title,
-        post: this.post
-      };
-      axios
-        .post("/auth/posts", userPost)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push('/')
+  name: "Profile",
 
-        }).catch(error => {
-          console.log(error);
-        })
-    },
-  },
 };
 </script>
 

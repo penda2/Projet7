@@ -3,19 +3,32 @@ const db = require("../database");
 
 
 exports.createPost = (req, res, next) => {
-  const user = {
-    userId: req.body.userId,
+  const post = {
+    userId: req.auth.userId,
     title: req.body.title,
-    post: req.body.post,
+    postBody: req.body.post,
     image: req.body.image,
   };
-  db.query("INSERT INTO posts SET ?", user, (error, results) => {
+    db.query("INSERT INTO posts SET ?", post, (error, results) => {
     if (error) {
       res.json({ error });
     } else {
       console.log(results);
-      res.status(201).json({ user });
+      res.status(201).json({ message: "New post created!!" });
       console.log(user);
     }
   });
 };
+/*
+exports.getAllPosts = (req, res, next) => {
+  db.query("SELECT * FROM posts", (error, results) => {
+    if (error) {
+      res.json({ error });
+    } else {
+      console.log(results);
+      res.status(200).json({ results });
+      console.log(error);
+    }
+  });
+};
+*/
