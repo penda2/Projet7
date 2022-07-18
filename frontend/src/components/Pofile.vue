@@ -18,13 +18,17 @@
         <p class="name">Name</p>
       </div>
     </div>
+    <PostList/>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import PostList from './PostList.vue';
 export default {
   name: "Profile",
+  components: {
+    PostList
+  }
 
 };
 </script>

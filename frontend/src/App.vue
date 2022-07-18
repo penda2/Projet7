@@ -172,5 +172,16 @@ label {
   box-shadow: none;
   border: none;
 }
+#posts-container, .posts-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+}
+.posts-group {
+  align-items: flex-start;
+  width: 90%;
+
+}
 
 </style>

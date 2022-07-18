@@ -44,7 +44,7 @@ if (!email || !password)
   });
 else {
   db.query(
-    "SELECT email FROM user WHERE email = ?",[email], (error, results) => {
+    "SELECT id, email FROM user WHERE email = ?", [email], (error, results) => {
       console.log(results);
       if (error) throw error;
       if (!results[0] || !validPassword) // voir compare mdpass

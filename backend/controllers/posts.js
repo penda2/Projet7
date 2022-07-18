@@ -8,6 +8,7 @@ exports.createPost = (req, res, next) => {
     title: req.body.title,
     postBody: req.body.post,
     image: req.body.image,
+    createdDate: new Date(),
   };
     db.query("INSERT INTO posts SET ?", post, (error, results) => {
     if (error) {
@@ -15,11 +16,10 @@ exports.createPost = (req, res, next) => {
     } else {
       console.log(results);
       res.status(201).json({ message: "New post created!!" });
-      console.log(user);
     }
   });
 };
-/*
+
 exports.getAllPosts = (req, res, next) => {
   db.query("SELECT * FROM posts", (error, results) => {
     if (error) {
@@ -31,4 +31,3 @@ exports.getAllPosts = (req, res, next) => {
     }
   });
 };
-*/

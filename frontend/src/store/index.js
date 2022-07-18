@@ -1,22 +1,29 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
   state: {
-    user: null,
+    posts: []
   },
-  getters: {
-    user: (state) => {
-      return state.user;
-    }
-  },
-  mutations: {
-    user(state, user) {
-      state.user = user
-    }
-  },
+
   actions: {
-    user(context, user) {
-      context.commit('user', user)
+    getAllPosts({ commit }) {
+      axios
+        .get('/posts')
+        .then(data => {
+          console.log(data.data);
+          let posts = data.data;
+          commit ('SET_POSTS', posts);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  },
+
+  mutations: {
+    SET_POSTS (state, posts) {
+      state.posts = posts
     }
   }
-})
+});
