@@ -107,7 +107,7 @@ h1 {
   color: #4E5166;
   margin: 20px;
 }
-.btn-connect {
+.btn-connect, .btn-comment {
   background-color: #4E5166;
   color: #ffffff;
 }
@@ -180,8 +180,41 @@ label {
 }
 .posts-group {
   align-items: flex-start;
-  width: 90%;
+  width: 95%;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #4E5166;
+  margin-bottom: 15px;
+}
+.input-comment {
+  width: 150px;
+}
+.btn-comment {
+  width: 80px;
+}
 
+.btn-comment, .input-comment {
+  margin: 0;
+  padding: 5px;
+  border-radius: 5px;
+}
+.commentBloc label {
+  margin: 0 10px 0 0;
+}
+.postActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  margin-top: 15px;
+}
+.likes, .commentBloc {
+  display: flex;
+  width: 100%;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 </style>

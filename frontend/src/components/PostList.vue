@@ -5,6 +5,16 @@
       <P>title: {{post.title}}</P>
       <p>body: {{post.postBody}}</p>
       <span>date: {{post.createdDate}}</span>
+      <div class="postActions">
+        <div class="commentBloc">
+          <input type="text" class="input-comment"/>
+          <input type="submit" class="btn-comment" value="Comment" />
+        </div>
+        <div class="likes">
+          <p>Like</p>
+          <p>Dislike</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
