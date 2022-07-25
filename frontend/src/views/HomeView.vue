@@ -1,16 +1,16 @@
 <template>
  <div id="homeContainer">
-    <Profile/>
+    <Page/>
   </div>
 </template>
 
 <script>
-import Profile from './Pofile.vue'
+import Page from './Page.vue'
 export default {
   name: 'HomeView',  
   components: {
-    Profile,
-  },
+    Page
+}
 }
 </script>
 

@@ -23,9 +23,9 @@
 </template>
 
 <script>
-import PostList from './PostList.vue';
+import PostList from '../components/PostList.vue';
 export default {
-  name: "Profile",
+  name: "Page",
   components: {
     PostList
   }

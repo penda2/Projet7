@@ -1,14 +1,15 @@
 const fs = require("fs");
 const db = require("../database");
+const moment = require("moment");
 
-
+const datePost = moment().fromNow();
 exports.createPost = (req, res, next) => {
   const post = {
     userId: req.auth.userId,
     title: req.body.title,
     postBody: req.body.post,
     image: req.body.image,
-    createdDate: new Date(),
+    createdDate: datePost,
   };
     db.query("INSERT INTO posts SET ?", post, (error, results) => {
     if (error) {

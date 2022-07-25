@@ -59,7 +59,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "Signup",
   data() {
@@ -68,10 +67,8 @@ export default {
       lastName: "",
       email: "",
       password: "",
-      passwordConfirm: "",
     };
   },
-
   methods: {
     handleSubmit() {
       axios
@@ -80,17 +77,13 @@ export default {
           lastName: this.lastName,
           email: this.email,
           password: this.password,
-          passwordConfirm: this.passwordConfirm,
         })
         .then((response) => {
           console.log(response.data);
           this.$router.push('/login')
-
         }).catch(error => {
           console.log(error);
         })
-        
-        
     },
   },
 

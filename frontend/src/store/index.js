@@ -12,7 +12,7 @@ export default createStore({
         .get('/posts')
         .then(data => {
           console.log(data.data);
-          let posts = data.data;
+          let posts = data.data.results;
           commit ('SET_POSTS', posts);
         })
         .catch((error) => {
