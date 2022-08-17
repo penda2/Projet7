@@ -10,7 +10,13 @@ export default {
   name: 'HomeView',  
   components: {
     Page
-}
+},
+mounted() {
+    const userInfo = localStorage.getItem('userInfo')
+    if(!userInfo) {
+      this.$router.push('/Signup')
+    }
+  }
 }
 </script>
 

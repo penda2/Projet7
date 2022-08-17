@@ -50,11 +50,18 @@ export default {
         .post("/auth/login", user)
         .then((response) => {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token
+          localStorage.setItem('token', JSON.stringify(response.data))
          this.$router.push('/')
 
         }).catch(error => {
           console.log(error);
         })
+    }
+  },
+  mounted() {
+    const token = localStorage.getItem('token')
+    if(token) {
+      this.$router.push('/')
     }
   }
 };

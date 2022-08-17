@@ -3,14 +3,12 @@
         <div id="container">
             <div class="logo">
                 <img alt="logo groupomania" src="../assets/icon.png" class="img" />
+                <h1>Groupomania</h1>
             </div>
             <div class="links">
                 <ul>
-                    <li class="signup">
-                        <router-link to="/signup"> Profile</router-link>
-                    </li>
                     <li class="login">
-                        <router-link to="/login">Logout</router-link>
+                        <button class="btn-logout" @click="logout">Logout</button>
                     </li>
                 </ul>
             </div>
@@ -20,6 +18,11 @@
 
 <script>
 export default {
-name: "NavBar"
+name: "NavBar",
+methods: { logout() {
+    localStorage.removeItem('token')
+    this.$router.push('/Login')
+}
+}
 }
 </script>

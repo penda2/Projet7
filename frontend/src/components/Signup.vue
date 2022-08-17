@@ -42,16 +42,6 @@
       />
     </div>
     <div class="form-ctrl">
-      <label>Confirmer mot de passe</label>
-      <input
-        type="password"
-        class="input-focus"
-        v-model="passwordConfirm"
-        placeholder="Mot de passe"
-        name="passwordConfirm"
-      />
-    </div>
-    <div class="form-ctrl">
       <input type="submit" class="btn-connect" value="Créer un compte" />
     </div>
   </form>
@@ -80,12 +70,19 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          localStorage.setItem('userInfo', JSON.stringify(response.data))
           this.$router.push('/login')
         }).catch(error => {
           console.log(error);
         })
     },
   },
+  mounted() {
+    const userInfo = localStorage.getItem('userInfo')
+    if(userInfo) {
+      this.$router.push('/login')
+    }
+  }
 
 };
 </script>

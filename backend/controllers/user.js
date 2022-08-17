@@ -25,7 +25,7 @@ bcrypt.hash(req.body.password, 10)
             res.json({ error });
           } else {
             console.log(results);
-            res.status(201).json({ message: "Successful registration !!" });
+            res.status(200).json({ user: user });
             console.log(user);
           }
         });
@@ -47,7 +47,7 @@ else {
     "SELECT id, email FROM user WHERE email = ?", [email], (error, results) => {
       console.log(results);
       if (error) throw error;
-      if (!results[0] || !validPassword) // voir compare mdpass
+      if (!results[0] || !validPassword)
         return res.status(500).json({
           status: "error",
           error: " email ou mot de passe incorrect !",
