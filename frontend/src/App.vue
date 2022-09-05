@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style>
-
 * {
   box-sizing: border-box;
   outline: none;
@@ -38,7 +37,7 @@ export default {
   align-items: center;
   width: 90%;
 }
-.links {
+.logoutBloc {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,7 +53,6 @@ ul {
   display: flex;
   align-items: center;
 }
-
 .logo img {
     object-fit: cover;
     width: 60px;
@@ -65,7 +63,6 @@ ul {
   font-weight: bold;
   margin: 0;
 }
-
 nav {
   display: flex;
   flex-direction: row;
@@ -73,37 +70,31 @@ nav {
   justify-content: center;
   border-bottom: 1px solid #FFD7D7;
 }
-
-nav a, .profileLinks a {
+.fa-power-off, .fa-square-plus {
+  font-size: 20px;
+  cursor: pointer;
+}
+.fa-power-off:hover {
+  color: #FD2D01;
+}
+.profileLinks a {
   font-weight: bold;
   color: #4E5166;
   text-decoration: none;
 }
-.btn-new-post, .btn-edit-profile {
+.btn-edit-profile {
   background-color: #4E5166;
-  color: #ffffff;
+  color: #FFF;
   border: 2px solid #4E5166;
   border-radius: 5px;
   padding: 3px;
   cursor: pointer;
   margin-left: 25px;
 }
-.btn-new-post:hover, .btn-edit-profile:hover {
+.btn-edit-profile:hover {
   background-color: #FFD7D7;
   border: 2px solid #4E5166;
   color: #4E5166;
-}
-.btn-logout {
-    border: none;
-    background: none;
-    font-weight: bold;
-    color: #4e5166;
-    cursor: pointer;
-}
-.btn-logout:hover {
-    border-bottom: 2px solid #4E5166;
-    border-radius: 5px;
-    padding: 8px;
 }
 .postBody {
   min-height: 70px;
@@ -116,7 +107,6 @@ nav a, .profileLinks a {
   background-color: rgba(255, 215, 215, 0.4);
   border-radius: 10px;
 }
-
 input {
   width: 100%;
   margin-top: 10px;
@@ -134,6 +124,12 @@ input {
   margin-bottom: 20px;
   width: 60%;
 }
+.form-ctrl p {
+  align-self: center;
+  
+  margin: 0;
+  padding: 0;
+}
 .input-focus:hover {
   border: 2px solid #4E5166;
 }
@@ -141,21 +137,18 @@ h1 {
   color: #4E5166;
   margin: 20px;
 }
-.btn-connect, .btn-comment {
+.btn-connect {
   background-color: #4E5166;
-  color: #ffffff;
+  color: #FFF;
 }
 .btn-subscribe {
-  margin-top: 25px;
-  background: #ffffff;
+  background: #FFF;
   border: 2px solid #4E5166;
 }
-
 label {
   margin-left: 5px;
   font-weight: bold;
 }
-
 .infoprofile {
   position: relative;
   height: 200px;
@@ -182,7 +175,7 @@ label {
   align-items: center;
 }
 .profile p {
-  color: #ffffff;
+  color: #FFF;
   font-weight:bold;
   margin-left: 15px;
 }
@@ -205,12 +198,21 @@ label {
     align-items: center;
     margin-bottom: 15px;
 }
-.name {
+.edit-profile{
+  display: flex;
+}
+.edit-profile a {
+  margin-left: 10px;
+}
+.userName {
   font-size: 16px;
   font-weight: bold;
   margin-left: 10px;
 }
-.time {
+.fa-pen-to-square {
+  color: #FFF;
+}
+.postDate {
   font-size: 12px;
   margin-left: 5px;
   color: #999999;
@@ -244,7 +246,7 @@ label {
   margin: 0;
   border-radius: 10px;
   margin-top: 20px;
-  background-color: #fff;
+  background-color: #FFF;
   border-radius: 10px;
   padding: 15px;
 }
@@ -253,22 +255,6 @@ label {
   flex-direction: column;
   width: 90%;
   padding-top: 0;
-}
-.input-comment {
-  width: 150px;
-  background-color: #eee;
-}
-.btn-comment {
-  width: 80px;
-}
-
-.btn-comment, .input-comment {
-  margin: 0;
-  padding: 5px;
-  border-radius: 5px;
-}
-.commentBloc label {
-  margin: 0 10px 0 0;
 }
 .postActions {
   display: flex;
@@ -279,12 +265,19 @@ label {
   border-top: 1px solid #eee;
   padding-top: 15px;
 }
-.likes, .commentBloc {
+.fa-thumbs-up, .fa-pen-to-square, .fa-message, .fa-square-plus {
+  margin-right: 5px;
+  cursor: pointer;
+}
+.updateBloc a, .updateBloc .fa-pen-to-square {
+  text-decoration: none;
+  color: #4E5166;
+}
+.likeBloc, .commentBloc, .updateBloc {
   display: flex;
   width: 100%;
   align-content: center;
   justify-content: center;
   align-items: center;
 }
-
 </style>

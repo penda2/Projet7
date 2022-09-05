@@ -2,20 +2,17 @@
   <div id="pageProfile">
     <div class="infoprofile">
       <div class="profileLinks">
-        <ul>
-          <li>
-            <router-link to="/Post"><button class="btn-new-post">New post</button></router-link>
-            </li>
-            <li>
-              <router-link to="/"><button class="btn-edit-profile">Edit profile</button></router-link>
-            </li>
-        </ul>
+        <router-link to="/Post"><i class="fa-regular fa-square-plus"></i></router-link>
+        <p>New post</p>
       </div>
       <div class="profile">
         <div class="img-profile-container">
-        <img alt="profile picture" src="../assets/profil-test.jpg" class="imgProfile" c/>
+          <img alt="profile picture" src="../assets/profil-test.jpg" class="imgProfile" c/>
         </div>
-        <p class="name">Name</p>
+        <div class="edit-profile">
+          <p class="name">Name</p>
+          <router-link to="/"><i class="fa-solid fa-pen-to-square"></i></router-link>
+        </div>
       </div>
     </div>
     <PostList/>
@@ -28,16 +25,6 @@ export default {
   name: "Page",
   components: {
     PostList
-  },
-  mounted() {
-    const token = localStorage.getItem('token')
-    if(!token) {
-      this.$router.push('/Login')
-    }
   }
-
-};
+}
 </script>
-
-<style>
-</style>

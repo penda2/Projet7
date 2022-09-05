@@ -30,3 +30,30 @@ exports.getAllPosts = (req, res, next) => {
     }
   });
 };
+exports.getPostById = (req, res, next) => {
+    const id = req.params.id;
+  db.query("SELECT * FROM posts where id = ?", [id], (error, results) => {
+    if (error) {
+      res.json({ error });
+    } else {
+      console.log(results);
+      res.status(200).json({ results });
+      console.log(error);
+    }
+  });
+};
+exports.updatePost = (req, res, next) => {
+  const id = req.params.id;
+  let post = req.body;
+  let updateQuery = "UPDATE posts SET title = ?, postBody = ?, image = ? WHERE id = ?";
+  db.query(updateQuery, [req.body.title, req.body.postBody, req.body.image, id], (error, results) => {
+      if (error) {
+        res.json({ error });
+      } else {
+        console.log(results);
+        res.status(201).json({ message: "Post updated!!" });
+        console.log(error);
+      }
+    }
+  );
+};

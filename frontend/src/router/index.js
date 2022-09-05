@@ -1,32 +1,45 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import store from '@/store'
+
+const isAuthenticated = (to, from, next) => {
+  if (store.getters['getToken'] == null)
+    next({name:'Login'})
+  next()
+};
 
 const routes = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
+    name: "HomeView",
+    component: () => import("../views/HomeView.vue"),
+    beforeEnter: isAuthenticated,
   },
   {
     path: "/Login",
     name: "Login",
-    component: () => import("../components/Login.vue"),
+    component: () => import("../views/Login.vue"),
   },
   {
     path: "/Signup",
     name: "Signup",
-    component: () => import("../components/Signup.vue"),
+    component: () => import("../views/Signup.vue"),
   },
   {
     path: "/Post",
     name: "Post",
-    component: () => import("../components/Post.vue"),
+    component: () => import("../views/Post.vue"),
+    beforeEnter: isAuthenticated,
+  },
+  {
+    path: "/UpdatePost/:id",
+    name: "UpdatePost",
+    component: () => import("../views/UpdatePost.vue"),
+    beforeEnter: isAuthenticated,
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
-export default router
+export default router 

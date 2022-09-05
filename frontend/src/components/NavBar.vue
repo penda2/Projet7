@@ -5,12 +5,8 @@
                 <img alt="logo groupomania" src="../assets/icon.png" class="img" />
                 <h1>Groupomania</h1>
             </div>
-            <div class="links">
-                <ul>
-                    <li class="login">
-                        <button class="btn-logout" @click="logout">Logout</button>
-                    </li>
-                </ul>
+            <div class="logoutBloc">
+                <i class="fa-solid fa-power-off" @click="logout"></i>
             </div>
         </div>
     </nav>

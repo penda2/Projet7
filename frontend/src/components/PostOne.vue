@@ -4,9 +4,9 @@
             <div class="posts-group">
                 <div class="profile-in-post">
                     <img alt="profile picture" src="../assets/profil-test.jpg" class="img"/>
-                    <div class="name-time">
-                        <p class="name">userName</p>
-                        <span class="time">{{moment(post.createdDate).fromNow()}}</span>
+                    <div class="">
+                        <p class="userName">userName</p>
+                        <span class="postDate">{{moment(post.createdDate).fromNow()}}</span>
                     </div>
                 </div>
                 <div class="post-info">
@@ -14,12 +14,16 @@
                     <p>{{post.postBody}}</p>
                 </div>
                 <div class="postActions">
-                    <div class="likes">
-                        <p>Like</p>
+                    <div class="updateBloc">
+                       <router-link :to="{name:'UpdatePost', params:{id: post.id}}"><i class="fa-solid fa-pen-to-square"></i>Update</router-link>
+                    </div>
+                    <div class="likeBloc">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        <p>Like </p>
                     </div>
                     <div class="commentBloc">
-                        <input type="text" class="input-comment"/>
-                        <input type="submit" class="btn-comment" value="Comment" />
+                        <i class="fa-regular fa-message"></i>
+                        <p>Comment</p>
                     </div>
                 </div>
             </div>
@@ -32,15 +36,14 @@ import { mapState } from 'vuex'
 import moment from "moment";
 export default {
     name: "PostOne",
-    props: ['post'],
      computed: {
       ...mapState([
           'posts'
-      ])
+      ]),
   },
     created() {
         this.moment = moment
-      this.$store.dispatch('getAllPosts')
+        this.$store.dispatch('getAllPosts')
   }
 }
 </script>
