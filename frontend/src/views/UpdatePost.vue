@@ -1,6 +1,6 @@
 <template>
-  <form @submit.prevent="updatePost" id="form-group">
-    <h1>Update post {{ $route.params.id }}</h1>
+  <form @submit.prevent="updatePost" class="form-group">
+    <h1>Modifier post {{ $route.params.id }}</h1>
     <div class="form-ctrl">
       <label>Title</label>
       <input type="text" class="input-focus" v-model="title" />
@@ -10,7 +10,7 @@
       <input type="textarea" class="input-focus postBody" v-model="post" />
     </div>
     <div class="form-ctrl">
-      <label for="file">Add image</label>
+      <label for="file">Ajouter une image</label>
       <input type="file" class="loadImg" />
     </div>
     <div class="form-ctrl">
@@ -21,7 +21,6 @@
 
 <script>
 import axios from "axios";
-import { mapState } from "vuex";
 export default {
   name: "UpdatePost",
   data() {
@@ -54,6 +53,8 @@ export default {
       .get("/posts/" + this.$route.params.id)
       .then((response) => {
         const data = response.data.results[0];
+        console.log("data update:");
+        console.log(data);
         this.title = data.title;
         this.post = data.postBody;
         this.image = data.image;

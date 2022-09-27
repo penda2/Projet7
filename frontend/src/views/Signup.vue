@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" id="form-group">
+  <form @submit.prevent="handleSubmit" class="form-group">
     <h1>S'inscrire</h1>
     <div class="form-ctrl">
       <label>Prénom</label>
@@ -49,7 +49,7 @@
 
 <script>
 import axios from "axios";
-import { mapState } from 'vuex'
+import { mapState, mapActions } from "vuex";
 export default {
   name: "Signup",
   data() {
@@ -60,13 +60,12 @@ export default {
       password: "",
     };
   },
-  computed: {
-      ...mapState([
-          'user'
-      ])
+  created() {
+    this.$store.dispatch("getUser");
   },
-    created() {
-        this.$store.dispatch('getUser')
+  computed: {
+    ...mapState(["user"]),
+    ...mapActions("getUser"),
   },
   methods: {
     handleSubmit() {
@@ -79,12 +78,13 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          this.$router.push('/login')
-        }).catch(error => {
-          console.log(error);
+          this.user(response.data);
+          this.$router.push("/login");
         })
-    }
-  }
-
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>

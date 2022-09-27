@@ -5,13 +5,21 @@ export default createStore({
   state: {
     posts: [],
     user: {},
+    firstName: null,
     token: null,
+    userId: null,
   },
 
   getters: {
     getToken(state) {
       return state.token;
     },
+    getUserId(state) {
+      return state.userId;
+    },
+    getName(state) {
+      return state.firstName
+    }
   },
 
   actions: {
@@ -19,7 +27,6 @@ export default createStore({
       axios
         .get("/posts")
         .then((data) => {
-          console.log(data.data);
           let posts = data.data.results;
           commit("SET_POSTS", posts);
         })
@@ -29,7 +36,7 @@ export default createStore({
     },
     getUser({ commit }) {
       axios
-        .get("/auth/signup")
+        .get("/signup")
         .then((data) => {
           console.log(data.data);
           let user = data.data.results;
@@ -38,7 +45,7 @@ export default createStore({
         .catch((error) => {
           console.log(error);
         });
-    }
+    },
   },
 
   mutations: {
@@ -48,8 +55,14 @@ export default createStore({
     SET_TOKEN(state, token) {
       state.token = token;
     },
+    SET_USERID(state, userId) {
+      state.userId = userId;
+    },
     SET_USER(state, user) {
       state.user = user;
     },
+    SET_FIRSTNAME(state, firstName) {
+      state.firstName = firstName
+    }
   },
 });

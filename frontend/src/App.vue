@@ -1,6 +1,6 @@
 <template>
- <div class="app">
-    <NavBar/>
+  <div class="app">
+    <NavBar />
     <div>
       <router-view />
     </div>
@@ -12,8 +12,8 @@ import NavBar from "./components/NavBar.vue";
 export default {
   name: "app",
   components: {
-   NavBar,
-},
+    NavBar,
+  },
 };
 </script>
 
@@ -27,8 +27,7 @@ export default {
 }
 #app {
   font-family: Lato, Helvetica, Arial, sans-serif;
-  text-align: center;
-  color: #4E5166;
+  color: #4e5166;
 }
 #container {
   display: flex;
@@ -49,17 +48,18 @@ ul {
   margin: 0;
   padding: 0;
 }
-.logo  {
+.logo {
   display: flex;
   align-items: center;
+  text-decoration: none;
 }
 .logo img {
-    object-fit: cover;
-    width: 60px;
-    padding: 0;
+  object-fit: cover;
+  width: 60px;
+  padding: 0;
 }
 .logo h1 {
-  color: #FD2D01;
+  color: #fd2d01;
   font-weight: bold;
   margin: 0;
 }
@@ -68,44 +68,54 @@ nav {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #FFD7D7;
 }
-.fa-power-off, .fa-square-plus {
+.fa-power-off,
+.fa-square-plus {
   font-size: 20px;
   cursor: pointer;
 }
 .fa-power-off:hover {
-  color: #FD2D01;
+  color: #fd2d01;
 }
 .profileLinks a {
   font-weight: bold;
-  color: #4E5166;
+  color: #4e5166;
   text-decoration: none;
 }
 .btn-edit-profile {
-  background-color: #4E5166;
-  color: #FFF;
-  border: 2px solid #4E5166;
+  background-color: #4e5166;
+  color: #fff;
+  border: 2px solid #4e5166;
   border-radius: 5px;
   padding: 3px;
   cursor: pointer;
   margin-left: 25px;
 }
 .btn-edit-profile:hover {
-  background-color: #FFD7D7;
-  border: 2px solid #4E5166;
-  color: #4E5166;
+  background-color: #ffd7d7;
+  border: 2px solid #4e5166;
+  color: #4e5166;
 }
 .postBody {
   min-height: 70px;
 }
-#form-group, .PostContainair {
+.form-group,
+.PostContainair {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 215, 215, 0.4);
   border-radius: 10px;
+  padding-bottom: 15px;
+}
+.PostContainair p {
+  font-size: 14px;
+}
+.postTitle {
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 8px;
 }
 input {
   width: 100%;
@@ -126,24 +136,33 @@ input {
 }
 .form-ctrl p {
   align-self: center;
-  
   margin: 0;
   padding: 0;
 }
+.form-ctrl a {
+  width: 100%;
+}
 .input-focus:hover {
-  border: 2px solid #4E5166;
+  border: 2px solid #4e5166;
 }
 h1 {
-  color: #4E5166;
+  color: #4e5166;
   margin: 20px;
 }
 .btn-connect {
-  background-color: #4E5166;
-  color: #FFF;
+  background-color: #4e5166;
+  color: #fff;
+  cursor: pointer;
+}
+.btn-connect:hover {
+  background-color: #fff;
+  color: #4e5166;
+  border: 2px solid #4e5166;
 }
 .btn-subscribe {
-  background: #FFF;
-  border: 2px solid #4E5166;
+  background: #fff;
+  border: 2px solid #4e5166;
+  cursor: pointer;
 }
 label {
   margin-left: 5px;
@@ -152,7 +171,7 @@ label {
 .infoprofile {
   position: relative;
   height: 200px;
-  background-color: #4E5166;
+  background-color: #4e5166;
   border-radius: 5px;
   overflow: hidden;
 }
@@ -175,8 +194,8 @@ label {
   align-items: center;
 }
 .profile p {
-  color: #FFF;
-  font-weight:bold;
+  color: #fff;
+  font-weight: bold;
   margin-left: 15px;
 }
 .imgProfile {
@@ -184,21 +203,21 @@ label {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  border: 5px solid #FFD7D7;
-  background-color: #4E5166;
-  font-weight:bold ;
+  border: 5px solid #ffd7d7;
+  background-color: #4e5166;
+  font-weight: bold;
 }
 /* post*/
 .loadImg {
   box-shadow: none;
   border: none;
 }
-.profile-in-post{
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+.profile-in-post {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
 }
-.edit-profile{
+.edit-profile {
   display: flex;
 }
 .edit-profile a {
@@ -210,7 +229,7 @@ label {
   margin-left: 10px;
 }
 .fa-pen-to-square {
-  color: #FFF;
+  color: #fff;
 }
 .postDate {
   font-size: 12px;
@@ -218,18 +237,19 @@ label {
   color: #999999;
 }
 .profile-in-post img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 .post-info {
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
-#posts-container, .post-bloc {
+#posts-container,
+.post-bloc {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -246,7 +266,7 @@ label {
   margin: 0;
   border-radius: 10px;
   margin-top: 20px;
-  background-color: #FFF;
+  background-color: #fff;
   border-radius: 10px;
   padding: 15px;
 }
@@ -265,19 +285,33 @@ label {
   border-top: 1px solid #eee;
   padding-top: 15px;
 }
-.fa-thumbs-up, .fa-pen-to-square, .fa-message, .fa-square-plus {
+.fa-thumbs-up,
+.fa-pen-to-square,
+.fa-message,
+.fa-square-plus,
+.fa-trash-can {
   margin-right: 5px;
   cursor: pointer;
 }
-.updateBloc a, .updateBloc .fa-pen-to-square {
+.updateBloc a,
+.updateBloc .fa-pen-to-square {
   text-decoration: none;
-  color: #4E5166;
+  color: #4e5166;
 }
-.likeBloc, .commentBloc, .updateBloc {
+.likeBloc,
+.commentBloc,
+.updateBloc,
+.deleteBloc {
   display: flex;
   width: 100%;
   align-content: center;
   justify-content: center;
   align-items: center;
+}
+.commentBloc a {
+  text-decoration: none;
+}
+.commentBloc span {
+  margin-left: 5px;
 }
 </style>

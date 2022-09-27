@@ -1,15 +1,15 @@
 <template>
   <div id="posts-container">
-    <PostOne/>
+    <PostContent />
   </div>
 </template>
 
 <script>
-import PostOne from "./PostOne.vue";
+import PostContent from "./PostContent.vue";
 export default {
   name: "PostList",
   components: {
-    PostOne
-  }
+    PostContent,
+  },
 };
 </script>

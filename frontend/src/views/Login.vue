@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit" id="form-group">
+  <form @submit.prevent="handleSubmit" class="form-group">
     <h1>Se connecter</h1>
     <div class="form-ctrl">
       <label>Adresse Email</label>
@@ -26,7 +26,9 @@
       <p>ou</p>
     </div>
     <div class="form-ctrl">
-      <router-link to="/Signup"><input type="submit" class="btn-subscribe" value="Créer un compte"/></router-link>
+      <router-link to="/Signup"
+        ><input type="submit" class="btn-subscribe" value="Créer un compte"
+      /></router-link>
     </div>
   </form>
 </template>
@@ -46,6 +48,8 @@ export default {
   methods: {
     ...mapMutations({
       setToken: "SET_TOKEN",
+      setUserId: "SET_USERID",
+      setFirstName: "SET_FIRSTNAME"
     }),
     handleSubmit() {
       const user = {
@@ -58,10 +62,17 @@ export default {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.token;
           this.setToken(response.data.token);
+          this.setUserId(response.data.userId);
+          this.setFirstName(response.data.firstName);
           this.$router.push("/");
         })
         .catch((error) => {
           console.log(error);
+          Swal.fire({
+            icon: "error",
+            title: "Oups...",
+            text: "Email ou mot de passe incorrect !!",
+          });
         });
     },
   },

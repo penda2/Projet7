@@ -25,15 +25,21 @@ const routes = [
     component: () => import("../views/Signup.vue"),
   },
   {
-    path: "/Post",
-    name: "Post",
-    component: () => import("../views/Post.vue"),
+    path: "/CreatePost",
+    name: "CreatePost",
+    component: () => import("../views/CreatePost.vue"),
     beforeEnter: isAuthenticated,
   },
   {
     path: "/UpdatePost/:id",
     name: "UpdatePost",
     component: () => import("../views/UpdatePost.vue"),
+    beforeEnter: isAuthenticated,
+  },
+  {
+    path: "/CreateComment",
+    name: "CreateComment",
+    component: () => import("../views/CreateComment.vue"),
     beforeEnter: isAuthenticated,
   },
 ];

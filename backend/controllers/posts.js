@@ -6,8 +6,8 @@ exports.createPost = (req, res, next) => {
     userId: req.auth.userId,
     title: req.body.title,
     postBody: req.body.post,
-    image: req.body.image,
-    createdDate: new Date().toISOString().slice(0, 19).replace('T', ' '),
+    image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    createdDate: new Date().toISOString().slice(0, 19).replace("T", " "),
   };
     db.query("INSERT INTO posts SET ?", post, (error, results) => {
     if (error) {
@@ -24,14 +24,13 @@ exports.getAllPosts = (req, res, next) => {
     if (error) {
       res.json({ error });
     } else {
-      console.log(results);
       res.status(200).json({ results });
       console.log(error);
     }
   });
 };
 exports.getPostById = (req, res, next) => {
-    const id = req.params.id;
+  const id = req.params.id;
   db.query("SELECT * FROM posts where id = ?", [id], (error, results) => {
     if (error) {
       res.json({ error });
@@ -44,9 +43,8 @@ exports.getPostById = (req, res, next) => {
 };
 exports.updatePost = (req, res, next) => {
   const id = req.params.id;
-  let post = req.body;
   let updateQuery = "UPDATE posts SET title = ?, postBody = ?, image = ? WHERE id = ?";
-  db.query(updateQuery, [req.body.title, req.body.postBody, req.body.image, id], (error, results) => {
+  db.query(updateQuery, [req.body.title, req.body.post, req.body.image, id], (error, results) => {
       if (error) {
         res.json({ error });
       } else {
@@ -57,3 +55,27 @@ exports.updatePost = (req, res, next) => {
     }
   );
 };
+exports.deletePost = (req, res, next) => {
+  const id = req.params.id;
+  db.query("SELECT * FROM posts where id = ?", [id], (error, results) => {
+    if (error) {
+      res.json({ error });
+    }else if(results.length === 0){
+      res.status(404).json({message:"Not found !"})
+    } else {
+      if (results[0].userId === req.auth.userId) {
+        db.query("DELETE from posts where id = ?", [id], (error, results) => {
+          console.log(results);
+          if (error) {
+            res.json({ error });
+          } else {
+            res.status(200).json({ message: "Post deleted!!" });
+          }
+        });
+      } else {
+        res.status(401).json({ message: "non autorisé !" });
+      }
+    }
+  });
+  
+}

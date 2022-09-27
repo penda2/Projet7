@@ -37,28 +37,46 @@ bcrypt.hash(req.body.password, 10)
 // connexion : recherche utilisateur par mail + comparaison mot de passe
 exports.login = (req, res, next) => {
 const { email, password } = req.body;
-const validPassword = bcrypt.compare(req.body.password, password);
-if (!email || !password)
+if (!email || !password){
   return res.json({
     status: "error", error: "Veuillez entrer vorte email et mot de passe !",
   });
-else {
+}else {
   db.query(
-    "SELECT id, email FROM user WHERE email = ?", [email], (error, results) => {
-      console.log(results);
+    "SELECT id, email, password, firstName FROM user WHERE email = ?", [email], (error, results) => {
       if (error) throw error;
-      if (!results[0] || !validPassword)
+      if (!results[0]) {
         return res.status(500).json({
           status: "error",
           error: " email ou mot de passe incorrect !",
         });
-      else {
-        const token = jwt.sign(
-          { userId: results[0].id },
-          process.env.CODE_TOKEN,
-          { expiresIn: "24h",}
-        );
-        return res.status(200).json({ token: token });
+      }else {
+        console.log(password);
+        console.log(results[0]);
+        bcrypt
+          .compare(password, results[0].password)
+          .then((valid) => {
+            if (!valid) {
+              return res.status(501).json({
+                status: "error",
+                error: " email ou mot de passe incorrect !",
+              });
+            }
+            const token = jwt.sign(
+              { userId: results[0].id },
+              process.env.CODE_TOKEN,
+              { expiresIn: "24h" }
+            );
+            return res.status(200).json({
+              firstName: results[0].firstName,
+              userId: results[0].id,
+              token: token,
+            });
+          })
+          .catch((error) => {
+            console.log(error);
+           return res.status(500).json( error )
+          });
       }
     }
   );
