@@ -1,11 +1,10 @@
 <template>
   <form @submit.prevent="createComment" class="form-group">
-    <h1>Commenter {{ $route.params.id }}</h1>
+    <h1>Commenter</h1>
     <div class="form-ctrl">
       <label>Commentaire</label>
       <input
-        type="textarea"
-        class="input-focus commentBody"
+        type="textarea" class="input-focus commentBody"
         v-model="comment"
       />
     </div>

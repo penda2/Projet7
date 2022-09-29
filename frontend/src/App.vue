@@ -270,7 +270,7 @@ label {
   border-radius: 10px;
   padding: 15px;
 }
-#post-content {
+#post-content, #comment-content {
   display: flex;
   flex-direction: column;
   width: 90%;

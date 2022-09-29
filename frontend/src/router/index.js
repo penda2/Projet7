@@ -42,6 +42,12 @@ const routes = [
     component: () => import("../views/CreateComment.vue"),
     beforeEnter: isAuthenticated,
   },
+  {
+    path: "/commentContent",
+    name: "commentContent",
+    component: () => import("../components/commentContent.vue"),
+    beforeEnter: isAuthenticated,
+  },
 ];
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

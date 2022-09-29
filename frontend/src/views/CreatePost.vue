@@ -17,7 +17,7 @@
       <input
         type="file"
         accept="images/*"
-        ref="image"
+        ref="file"
         @change="change"
         class="loadImg"
       />
@@ -31,31 +31,30 @@
 <script>
 import axios from "axios";
 export default {
-  components: {
-  },
   name: "CreatePost",
   data() {
     return {
       userId: "",
       title: "",
       post: "",
-      image: "",
+      file: "",
     };
   },
   methods: {
     change() {
-      this.image = this.$refs.image.files[0];
+      this.file = this.$refs.file.files[0];
     },
     createPost() {
       const formData = new FormData();
       formData.append('file', this.file);
-      const userPost = {
-        title: this.title,
-        post: this.post,
-        image: this.image,
-      };
+      formData.append('title', this.title);
+      formData.append('post', this.post);
       axios
-        .post("/posts/", userPost, formData)
+        .post("/posts/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
         .then((response) => {
           console.log(response.data);
           this.$router.push("/");

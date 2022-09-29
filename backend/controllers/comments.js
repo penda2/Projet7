@@ -2,9 +2,9 @@ const db = require("../database");
 
 exports.createComment = (req, res, next) => {
   const comment = {
-    userId: req.auth.userId,
+    user_id: req.auth.userId,
     comment: req.body.comment,
-    createdDate: new Date().toISOString().slice(0, 19).replace("T", " "),
+    created_date: new Date().toISOString().slice(0, 19).replace("T", " "),
   };
   db.query("INSERT INTO comments SET ?", comment, (error, results) => {
     if (error) {

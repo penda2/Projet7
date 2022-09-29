@@ -24,7 +24,7 @@
         </div>
       </div>
     </div>
-    <PostList />
+    <PostList/>
   </div>
 </template>
 

@@ -2,11 +2,12 @@ const fs = require("fs");
 const db = require("../database");
 
 exports.createPost = (req, res, next) => {
+  console.log(req.file);
   const post = {
     userId: req.auth.userId,
     title: req.body.title,
     postBody: req.body.post,
-    image: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    image: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
     createdDate: new Date().toISOString().slice(0, 19).replace("T", " "),
   };
     db.query("INSERT INTO posts SET ?", post, (error, results) => {
@@ -78,4 +79,19 @@ exports.deletePost = (req, res, next) => {
     }
   });
   
+};
+
+exports.likePost = (req, res, next) => {
+  const like = {
+    userId: req.auth.userId,
+    postId: req.params.id,
+  };
+  db.query("INSERT INTO likes SET ?", like, (error, results) => {
+    if (error) {
+      res.json({ error });
+    } else {
+      console.log("test:", results);
+      res.status(201).json({ message: "Post liked !!" });
+    }
+  });
 }

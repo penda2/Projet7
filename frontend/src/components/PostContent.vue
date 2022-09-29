@@ -18,7 +18,7 @@
         <div class="post-info">
           <P class="postTitle">{{ post.title }}</P>
           <p>{{ post.postBody }}</p>
-          <p>{{ post.image }}</p>
+          <img :src="post.image"/>
         </div>
         <div class="postActions">
           <div v-if="isOwner(post.userId)" class="updateBloc">
@@ -27,7 +27,7 @@
             >
           </div>
           <div class="likeBloc">
-            <i class="fa-regular fa-thumbs-up"></i>
+            <i @click="likePost(post.id)" class="fa-regular fa-thumbs-up"></i>
             <p>J'aime</p>
           </div>
           <div class="commentBloc">
@@ -35,7 +35,9 @@
               ><i class="fa-regular fa-message"></i
             ></router-link>
             <p>Commenter</p>
-            <span>0</span>
+            <router-link to="/commentContent"><span>0</span></router-link>
+            <commentContent/>
+            
           </div>
           <div v-if="isOwner(post.userId)" class="deleteBloc">
             <i @click="deletePost(post.id)" class="fa-regular fa-trash-can"></i>
@@ -49,10 +51,16 @@
 
 <script>
 import axios from "axios";
+import CommentContent from "./commentContent.vue"
+import CreateComment from "@/views/CreateComment.vue";
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
   name: "PostContent",
+  components: {
+    CreateComment,
+    CommentContent,
+  },
   computed: {
     ...mapState(["posts", "userId", "firstName"]),
   },
@@ -75,6 +83,20 @@ export default {
           console.log(error);
         });
     },
+
+    likePost(id) {
+      axios
+        .post("/posts/" + id)
+        .then((response) => {
+          console.log(response.data);
+          this.$store.dispatch("getAllPosts");
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     isOwner(id) {
       return id === this.userId;
     },

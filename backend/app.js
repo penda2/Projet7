@@ -4,6 +4,7 @@ const axios = require("axios");
 const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user");
 const postsRoutes = require('./routes/posts')
+const commentsRoutes = require('./routes/comments')
 const auth = require("./middleware/auth");
 const path = require("path");
 const helmet = require("helmet");
@@ -33,9 +34,10 @@ app.use((req, res, next) => {
 
 //app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/auth", userRoutes);
 app.use('/api/posts', postsRoutes);
+app.use("/api/comments", commentsRoutes);
 
 
 module.exports = app;
