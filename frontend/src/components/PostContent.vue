@@ -18,7 +18,9 @@
         <div class="post-info">
           <P class="postTitle">{{ post.title }}</P>
           <p>{{ post.postBody }}</p>
-          <img :src="post.image"/>
+          <div class="postImg-container">
+            <img :src="post.image" class="postImg"/>
+          </div>
         </div>
         <div class="postActions">
           <div v-if="isOwner(post.userId)" class="updateBloc">
@@ -77,7 +79,7 @@ export default {
           console.log(response.data);
           this.$store.dispatch("getAllPosts");
           this.$router.push("/");
-          Swal.fire("Le post a été bien supprimé!!!");
+          alert("Le post a été bien supprimé!!!");
         })
         .catch((error) => {
           console.log(error);
@@ -88,7 +90,7 @@ export default {
       axios
         .post("/posts/" + id)
         .then((response) => {
-          console.log(response.data);
+          console.log(response);
           this.$store.dispatch("getAllPosts");
           this.$router.push("/");
         })

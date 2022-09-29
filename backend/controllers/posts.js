@@ -94,4 +94,14 @@ exports.likePost = (req, res, next) => {
       res.status(201).json({ message: "Post liked !!" });
     }
   });
-}
+};
+exports.getLikes = (req, res, next) => {
+  db.query("SELECT * FROM likes", (error, results) => {
+    if (error) {
+      res.json({ error });
+    } else {
+      res.status(200).json({ results });
+      console.log(error);
+    }
+  });
+};

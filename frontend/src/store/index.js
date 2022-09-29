@@ -49,10 +49,10 @@ export default createStore({
     },
     getUser({ commit }) {
       axios
-        .get("/signup")
+        .get("/login")
         .then((data) => {
           console.log(data.data);
-          let user = data.data.results;
+          let user = data.data;
           commit("SET_USER", user);
         })
         .catch((error) => {

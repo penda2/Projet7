@@ -115,7 +115,7 @@ nav {
 .postTitle {
   font-weight: bold;
   text-align: left;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 input {
   width: 100%;
@@ -211,6 +211,16 @@ label {
 .loadImg {
   box-shadow: none;
   border: none;
+}
+.postImg-container {
+	width: 100%;
+	height: 300px;
+  margin-top: 20px;
+}
+.postImg {
+  object-fit: cover;
+	width: 100%;
+	height: 100%;
 }
 .profile-in-post {
   display: flex;

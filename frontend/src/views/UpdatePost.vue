@@ -11,7 +11,7 @@
     </div>
     <div class="form-ctrl">
       <label for="file">Ajouter une image</label>
-      <input type="file" class="loadImg" />
+      <input type="file" accept="images/*" ref="file" @change="change" class="loadImg"/>
     </div>
     <div class="form-ctrl">
       <input type="submit" class="btn-connect" value="Update" />
@@ -27,15 +27,18 @@ export default {
     return {
       title: "",
       post: "",
-      image: "",
+      file: "",
     };
   },
   methods: {
+    change() {
+      this.file = this.$refs.file.files[0];
+    },
     updatePost() {
       const userPostUpdate = {
         title: this.title,
         post: this.post,
-        image: this.image,
+        file: this.file,
       };
       axios
         .put("/posts/" + this.$route.params.id, userPostUpdate)
@@ -57,7 +60,7 @@ export default {
         console.log(data);
         this.title = data.title;
         this.post = data.postBody;
-        this.image = data.image;
+        this.file = data.file;
       })
       .catch((error) => {
         console.log(error);

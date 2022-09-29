@@ -2,25 +2,19 @@
   <form
     @submit.prevent="createPost"
     enctype="multipart/form-data"
-    class="form-group"
-  >
+    class="form-group">
     <h1>Create post</h1>
     <div class="form-ctrl">
       <label>Titre</label>
-      <input type="text" class="input-focus" v-model="title" />
+      <input type="text" class="input-focus" v-model="title"/>
     </div>
     <div class="form-ctrl">
       <label>Post</label>
-      <input type="textarea" class="input-focus postBody" v-model="post" />
+      <input type="textarea" class="input-focus postBody" v-model="post"/>
     </div>
     <div class="form-ctrl">
       <input
-        type="file"
-        accept="images/*"
-        ref="file"
-        @change="change"
-        class="loadImg"
-      />
+        type="file" accept="images/*" ref="file" @change="change" class="loadImg"/>
     </div>
     <div class="form-ctrl">
       <input type="submit" class="btn-connect" value="Valider" />
