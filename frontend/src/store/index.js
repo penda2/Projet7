@@ -4,7 +4,6 @@ import axios from 'axios'
 export default createStore({
   state: {
     posts: [],
-    comments: [],
     user: {},
     firstName: null,
     token: null,
@@ -35,18 +34,6 @@ export default createStore({
           console.log(error);
         });
     },
-    getAllComments({ commit }) {
-      axios
-        .get("/comments")
-        .then((data) => {
-          let comments = data.data.results;
-          commit("SET_COMMENTS", comments);
-          console.log(comments);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
     getUser({ commit }) {
       axios
         .get("/login")
@@ -65,10 +52,7 @@ export default createStore({
     SET_POSTS(state, posts) {
       state.posts = posts;
     },
-    SET_COMMENTS(state, comments) {
-      state.comments = comments;
-    },
-    SET_TOKEN(state, token) {
+   SET_TOKEN(state, token) {
       state.token = token;
     },
     SET_USERID(state, userId) {

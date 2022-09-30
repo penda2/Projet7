@@ -170,7 +170,7 @@ label {
 }
 .infoprofile {
   position: relative;
-  height: 200px;
+  height: 120px;
   background-color: #4e5166;
   border-radius: 5px;
   overflow: hidden;
@@ -187,25 +187,16 @@ label {
   padding-right: 10px;
 }
 .profile {
-  position: absolute;
-  bottom: 10%;
-  left: 15px;
   display: flex;
   align-items: center;
+  position: relative;
+  top: 18px;
 }
 .profile p {
   color: #fff;
   font-weight: bold;
   margin-left: 15px;
-}
-.imgProfile {
-  object-fit: cover;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 5px solid #ffd7d7;
-  background-color: #4e5166;
-  font-weight: bold;
+  font-size: 20px;
 }
 /* post*/
 .loadImg {
@@ -227,12 +218,7 @@ label {
   align-items: center;
   margin-bottom: 15px;
 }
-.edit-profile {
-  display: flex;
-}
-.edit-profile a {
-  margin-left: 10px;
-}
+
 .userName {
   font-size: 16px;
   font-weight: bold;
@@ -280,7 +266,7 @@ label {
   border-radius: 10px;
   padding: 15px;
 }
-#post-content, #comment-content {
+#post-content {
   display: flex;
   flex-direction: column;
   width: 90%;
@@ -309,7 +295,6 @@ label {
   color: #4e5166;
 }
 .likeBloc,
-.commentBloc,
 .updateBloc,
 .deleteBloc {
   display: flex;
@@ -318,10 +303,5 @@ label {
   justify-content: center;
   align-items: center;
 }
-.commentBloc a {
-  text-decoration: none;
-}
-.commentBloc span {
-  margin-left: 5px;
-}
+
 </style>

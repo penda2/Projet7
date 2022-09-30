@@ -3,11 +3,6 @@
     <div id="post-content" v-for="post in posts" :key="post.id">
       <div class="posts-group">
         <div class="profile-in-post">
-          <img
-            alt="photo de profile"
-            src="../assets/profil-test.jpg"
-            class="img"
-          />
           <div class="">
             <p class="userName">{{this.firstName}}</p>
             <span class="postDate">{{
@@ -30,16 +25,8 @@
           </div>
           <div class="likeBloc">
             <i @click="likePost(post.id)" class="fa-regular fa-thumbs-up"></i>
+            <span>{{post.totalLikes}}</span>
             <p>J'aime</p>
-          </div>
-          <div class="commentBloc">
-            <router-link to="/CreateComment"
-              ><i class="fa-regular fa-message"></i
-            ></router-link>
-            <p>Commenter</p>
-            <router-link to="/commentContent"><span>0</span></router-link>
-            <commentContent/>
-            
           </div>
           <div v-if="isOwner(post.userId)" class="deleteBloc">
             <i @click="deletePost(post.id)" class="fa-regular fa-trash-can"></i>
@@ -53,16 +40,10 @@
 
 <script>
 import axios from "axios";
-import CommentContent from "./commentContent.vue"
-import CreateComment from "@/views/CreateComment.vue";
 import { mapState, mapGetters } from "vuex";
 import moment from "moment";
 export default {
   name: "PostContent",
-  components: {
-    CreateComment,
-    CommentContent,
-  },
   computed: {
     ...mapState(["posts", "userId", "firstName"]),
   },
