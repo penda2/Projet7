@@ -31,6 +31,7 @@ export default {
       userId: "",
       title: "",
       post: "",
+      totalLikes: "",
       file: "",
     };
   },
@@ -43,6 +44,7 @@ export default {
       formData.append('file', this.file);
       formData.append('title', this.title);
       formData.append('post', this.post);
+      formData.append('totalLikes', this.totalLikes);
       axios
         .post("/posts/", formData, {
           headers: {

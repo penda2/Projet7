@@ -35,13 +35,16 @@ export default {
       this.file = this.$refs.file.files[0];
     },
     updatePost() {
-      const userPostUpdate = {
-        title: this.title,
-        post: this.post,
-        file: this.file,
-      };
+      const formData = new FormData();
+      formData.append('file', this.file);
+      formData.append('title', this.title);
+      formData.append('post', this.post);
       axios
-        .put("/posts/" + this.$route.params.id, userPostUpdate)
+        .put("/posts/" + this.$route.params.id, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data"
+          }
+        })
         .then((response) => {
           console.log(response.data);
           this.$router.push("/");
@@ -55,6 +58,7 @@ export default {
     axios
       .get("/posts/" + this.$route.params.id)
       .then((response) => {
+        console.log("update res.data", response.data);
         const data = response.data.results[0];
         console.log("data update:");
         console.log(data);

@@ -49,7 +49,8 @@ export default {
     ...mapMutations({
       setToken: "SET_TOKEN",
       setUserId: "SET_USERID",
-      setFirstName: "SET_FIRSTNAME"
+      setFirstName: "SET_FIRSTNAME",
+      setIsAdmin: "SET_ISADMIN"
     }),
     handleSubmit() {
       const user = {
@@ -64,15 +65,13 @@ export default {
           this.setToken(response.data.token);
           this.setUserId(response.data.userId);
           this.setFirstName(response.data.firstName);
+          this.setIsAdmin(response.data.isAdmin)
           this.$router.push("/");
         })
         .catch((error) => {
           console.log(error);
-          Swal.fire({
-            icon: "error",
-            title: "Oups...",
-            text: "Email ou mot de passe incorrect !!",
-          });
+          alert("Email ou mot de passe incorrect !!",
+          );
         });
     },
   },

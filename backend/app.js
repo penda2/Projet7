@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const userRoutes = require("./routes/user");
 const postsRoutes = require('./routes/posts')
 const auth = require("./middleware/auth");
+const admin = require("./middleware/admin");
 const path = require("path");
 const helmet = require("helmet");
 require("dotenv").config();

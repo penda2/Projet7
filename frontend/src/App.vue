@@ -2,7 +2,7 @@
   <div class="app">
     <NavBar />
     <div>
-      <router-view />
+      <router-view/>
     </div>
   </div>
 </template>
@@ -115,7 +115,7 @@ nav {
 .postTitle {
   font-weight: bold;
   text-align: left;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 input {
   width: 100%;
@@ -169,6 +169,7 @@ label {
   font-weight: bold;
 }
 .infoprofile {
+  margin-top: 5px;
   position: relative;
   height: 120px;
   background-color: #4e5166;
@@ -192,13 +193,15 @@ label {
   position: relative;
   top: 18px;
 }
-.profile p {
+.welcome {
   color: #fff;
-  font-weight: bold;
   margin-left: 15px;
-  font-size: 20px;
+  font-size: 22px;
 }
 /* post*/
+.new-post {
+  font-size: 18px;
+}
 .loadImg {
   box-shadow: none;
   border: none;
@@ -216,27 +219,17 @@ label {
 .profile-in-post {
   display: flex;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .userName {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  margin-left: 10px;
 }
-.fa-pen-to-square {
-  color: #fff;
-}
+
 .postDate {
   font-size: 12px;
-  margin-left: 5px;
   color: #999999;
-}
-.profile-in-post img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 .post-info {
   width: 100%;
@@ -250,7 +243,7 @@ label {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color: #eee;
+  background-color: #4e5166;
 }
 .post-bloc {
   flex-direction: column-reverse;
@@ -261,7 +254,7 @@ label {
   align-items: flex-start;
   margin: 0;
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: 15px;
   background-color: #fff;
   border-radius: 10px;
   padding: 15px;
@@ -269,7 +262,7 @@ label {
 #post-content {
   display: flex;
   flex-direction: column;
-  width: 90%;
+  width: 95%;
   padding-top: 0;
 }
 .postActions {
@@ -280,6 +273,10 @@ label {
   margin-top: 15px;
   border-top: 1px solid #eee;
   padding-top: 15px;
+}
+.fa-thumbs-up:hover, .fa-trash-can:hover {
+  color: #3A8EBA;
+  font-size: 18px;
 }
 .fa-thumbs-up,
 .fa-pen-to-square,
@@ -294,6 +291,13 @@ label {
   text-decoration: none;
   color: #4e5166;
 }
+.updateBloc .fa-pen-to-square:hover {
+  color: #3A8EBA;
+  font-size: 18px;
+}
+.likesCount {
+  margin-left: 5px;
+}
 .likeBloc,
 .updateBloc,
 .deleteBloc {
@@ -303,5 +307,30 @@ label {
   justify-content: center;
   align-items: center;
 }
+@media all and (min-width: 500px) and (max-width: 720px) /* IPAD */
+{
+  .postImg-container {
+    width: 100%;
+    height: 400px;
+    margin-top: 20px;
+}
+}
 
+@media all and (min-width: 721px) and (max-width: 901px)/* tablette */
+{
+  .postImg-container {
+    width: 100%;
+    height: 450px;
+    margin-top: 20px;
+}
+}
+
+@media all and (min-width: 901px)/* PC */
+{
+  .postImg-container {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+}
 </style>

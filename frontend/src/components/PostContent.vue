@@ -4,7 +4,7 @@
       <div class="posts-group">
         <div class="profile-in-post">
           <div class="">
-            <p class="userName">{{this.firstName}}</p>
+            <p class="userName">{{post.firstName}} {{post.lastName}}</p>
             <span class="postDate">{{
               moment(post.createdDate).fromNow()
             }}</span>
@@ -19,17 +19,17 @@
         </div>
         <div class="postActions">
           <div v-if="isOwner(post.userId)" class="updateBloc">
-            <router-link :to="{ name: 'UpdatePost', params: { id: post.id } }"
+            <router-link :to="{ name: 'UpdatePost', params: { id: post.postId } }"
               ><i class="fa-solid fa-pen-to-square"></i>Modifier</router-link
             >
           </div>
           <div class="likeBloc">
-            <i @click="likePost(post.id)" class="fa-regular fa-thumbs-up"></i>
-            <span>{{post.totalLikes}}</span>
+            <i @click="likePost(post.postId)" class="fa-regular fa-thumbs-up"></i>
             <p>J'aime</p>
+            <span class="likesCount">{{post.count}}</span>
           </div>
           <div v-if="isOwner(post.userId)" class="deleteBloc">
-            <i @click="deletePost(post.id)" class="fa-regular fa-trash-can"></i>
+            <i @click="deletePost(post.postId)" class="fa-regular fa-trash-can"></i>
             <p>Supprimer</p>
           </div>
         </div>
@@ -45,7 +45,7 @@ import moment from "moment";
 export default {
   name: "PostContent",
   computed: {
-    ...mapState(["posts", "userId", "firstName"]),
+    ...mapState(["posts", "userId", "firstName", "isAdmin"]),
   },
   created() {
     this.moment = moment;
@@ -79,10 +79,9 @@ export default {
           console.log(error);
         });
     },
-
     isOwner(id) {
-      return id === this.userId;
-    },
+      return id === this.userId || this.isAdmin;
+    }
   },
 };
 </script>

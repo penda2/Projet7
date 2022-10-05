@@ -8,6 +8,7 @@ export default createStore({
     firstName: null,
     token: null,
     userId: null,
+    isAdmin: null,
   },
 
   getters: {
@@ -19,6 +20,9 @@ export default createStore({
     },
     getName(state) {
       return state.firstName;
+    },
+    getIsAdmin(state) {
+      return state.isAdmin;
     },
   },
 
@@ -34,6 +38,19 @@ export default createStore({
           console.log(error);
         });
     },
+    getAllLikes({ commit }) {
+      axios
+        .get("/posts")
+        .then((data) => {
+          console.log(data.data);
+          let likes = data.data.results;
+          commit("SET_LIKES", likes);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
     getUser({ commit }) {
       axios
         .get("/login")
@@ -52,7 +69,7 @@ export default createStore({
     SET_POSTS(state, posts) {
       state.posts = posts;
     },
-   SET_TOKEN(state, token) {
+    SET_TOKEN(state, token) {
       state.token = token;
     },
     SET_USERID(state, userId) {
@@ -63,6 +80,9 @@ export default createStore({
     },
     SET_FIRSTNAME(state, firstName) {
       state.firstName = firstName;
+    },
+    SET_ISADMIN(state, isAdmin) {
+      state.isAdmin = isAdmin;
     },
   },
 });

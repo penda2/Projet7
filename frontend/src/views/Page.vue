@@ -3,14 +3,14 @@
     <div class="infoprofile">
       <div class="profile">
         <div class="edit-profile">
-          <p class="name">Bienvenue {{ this.firstName}}</p>
+          <p class="welcome">Bienvenue {{ this.firstName}}</p>
         </div>
       </div>
       <div class="profileLinks">
         <router-link to="/CreatePost"
           ><i class="fa-regular fa-square-plus"></i
         ></router-link>
-        <p>Nouveau post</p>
+        <p class="new-post">Nouveau post</p>
       </div>
       
     </div>

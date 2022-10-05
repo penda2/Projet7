@@ -13,6 +13,7 @@ bcrypt.hash(req.body.password, 10)
     lastName: req.body.lastName,
     email: req.body.email,
     password: hash,
+    isAdmin: req.body.isAdmin
   };
   db.query("SELECT * FROM user WHERE email = ?", user.email, (error, results) => {
       console.log(results);
@@ -43,7 +44,7 @@ if (!email || !password){
   });
 }else {
   db.query(
-    "SELECT id, email, password, firstName FROM user WHERE email = ?", [email], (error, results) => {
+    "SELECT id, email, password, isAdmin, firstName FROM user WHERE email = ?", [email], (error, results) => {
       if (error) throw error;
       if (!results[0]) {
         return res.status(500).json({
@@ -63,11 +64,12 @@ if (!email || !password){
               });
             }
             const token = jwt.sign(
-              { userId: results[0].id },
+              { isAdmin: results[0].isAdmin, userId: results[0].id },
               process.env.CODE_TOKEN,
               { expiresIn: "24h" }
             );
             return res.status(200).json({
+              isAdmin: results[0].isAdmin,
               firstName: results[0].firstName,
               userId: results[0].id,
               token: token,
