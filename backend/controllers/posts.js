@@ -1,8 +1,8 @@
-const fs = require("fs");
-const db = require("../database");
+const fs = require("fs"); // gestionnaire de fichiers
+const db = require("../database"); //import de la BDD
 
+// création d'un post, gestion d'esrreurs et son envoi à la BDD
 exports.createPost = (req, res, next) => {
-  console.log(req.file);
   const post = {
     userId: req.auth.userId,
     title: req.body.title,
@@ -14,12 +14,12 @@ exports.createPost = (req, res, next) => {
     if (error) {
       res.json({ error });
     } else {
-      console.log(results);
       res.status(201).json({ message: "New post created!!" });
     }
   });
 };
 
+// Sélection de tous les post de la BDD, gestion d'esrreurs 
 exports.getAllPosts = (req, res, next) => {
   db.query(
     `SELECT *, posts.id AS postId
@@ -30,28 +30,28 @@ exports.getAllPosts = (req, res, next) => {
 	  GROUP BY postId) AS likes ON posts.id = postId;
     `,
     (error, results) => {
-      console.log("results getAll", results);
       if (error) {
         res.json({ error });
       } else {
         res.status(200).json({ results });
-        console.log(error);
       }
     }
   );
 };
+
+// Sélection d'un post de la BDD par son id, gestion d'esrreurs 
 exports.getPostById = (req, res, next) => {
   const id = req.params.id;
   db.query("SELECT * FROM posts where id = ?", [id], (error, results) => {
     if (error) {
       res.json({ error });
     } else {
-      console.log(results);
       res.status(200).json({ results });
-      console.log(error);
     }
   });
 };
+
+// modification d'un post de la BDD sélectionné par son id, gestion d'esrreurs 
 exports.updatePost = (req, res, next) => {
   const id = req.params.id;
   db.query("SELECT userId FROM posts WHERE id = ?", [id], (error, results) => {
@@ -70,9 +70,7 @@ exports.updatePost = (req, res, next) => {
           if (error) {
             res.json({ error });
           } else {
-            console.log(results);
             res.status(201).json({ message: "Post updated!!" });
-            console.log(error);
           }
         }
       );
@@ -81,6 +79,8 @@ exports.updatePost = (req, res, next) => {
     }
   });
 };
+
+// Suppression d'un post de la BDD par son id, gestion d'esrreurs 
 exports.deletePost = (req, res, next) => {
   const id = req.params.id;
   db.query("SELECT userId FROM posts WHERE id = ?", [id], (error, results) => {
@@ -89,7 +89,6 @@ exports.deletePost = (req, res, next) => {
         "DELETE from posts where id = ?",
         [id],
         (error, results) => {
-          console.log(results);
           if (error) {
             res.json({ error });
           } else {
@@ -101,12 +100,9 @@ exports.deletePost = (req, res, next) => {
       res.status(401).json({ message: "Unauthorized!!" });
     }
   });
-
-
-
-  
 };
 
+// Création du systme like: sélection du nombre de likes par post, 1 utilisateur aime 1 fois un post 
 exports.likePost = (req, res, next) => {
   const like = {
     userId: req.auth.userId,
@@ -116,10 +112,8 @@ exports.likePost = (req, res, next) => {
     if(results.length == 0) {
         db.query("INSERT INTO likes SET ?", like, (error, results) => {
           if (error) {
-            console.log("resultat insert like", results);
             res.json({ error });
           } else {
-            console.log("test:", results);
             res.status(201).json({ message: "Post liked !!" });
           }
         });
@@ -129,19 +123,17 @@ exports.likePost = (req, res, next) => {
         [like.userId, like.postId],
         (error, results) => {
           if (error) {
-            console.log("resultat insert like", results);
             res.json({ error });
           } else {
-            console.log("test:", results);
             res.status(200).json({ message: "like deleted !!" });
           }
         }
       );
     }
   })
-  
-
 };
+
+// Sélection de tous les likes de la BDD, gestion d'esrreurs 
 exports.getLikes = (req, res, next) => {
   db.query("SELECT * FROM likes", (error, results) => {
     if (error) {

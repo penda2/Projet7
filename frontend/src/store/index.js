@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import axios from 'axios'
-
-export default createStore({
+//Assemblage des modules et import du store
+export default createStore({ //création du conteneur du state de l'application
   state: {
     posts: [],
     user: {},
@@ -11,7 +11,7 @@ export default createStore({
     isAdmin: null,
   },
 
-  getters: {
+  getters: {//accès au state pour y extraire des données à dispatcher
     getToken(state) {
       return state.token;
     },
@@ -27,7 +27,7 @@ export default createStore({
   },
 
   actions: {
-    getAllPosts({ commit }) {
+    getAllPosts({ commit }) {//requete pour obtenir la liste de tous les posts
       axios
         .get("/posts")
         .then((data) => {
@@ -38,11 +38,11 @@ export default createStore({
           console.log(error);
         });
     },
-    getAllLikes({ commit }) {
+
+    getAllLikes({ commit }) {//requete pour obtenir la liste de tous les likes
       axios
         .get("/posts")
         .then((data) => {
-          console.log(data.data);
           let likes = data.data.results;
           commit("SET_LIKES", likes);
         })
@@ -50,22 +50,9 @@ export default createStore({
           console.log(error);
         });
     },
-
-    getUser({ commit }) {
-      axios
-        .get("/login")
-        .then((data) => {
-          console.log(data.data);
-          let user = data.data;
-          commit("SET_USER", user);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
   },
 
-  mutations: {
+  mutations: {// utilisé pour pouvoir changer les valeurs d'un state
     SET_POSTS(state, posts) {
       state.posts = posts;
     },

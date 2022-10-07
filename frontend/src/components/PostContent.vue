@@ -40,11 +40,11 @@
 
 <script>
 import axios from "axios";
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters } from "vuex";//import du state pour l'accès à ses differents contenus
 import moment from "moment";
 export default {
   name: "PostContent",
-  computed: {
+  computed: {//utilisation des differents contenus du state
     ...mapState(["posts", "userId", "firstName", "isAdmin"]),
   },
   created() {
@@ -57,7 +57,6 @@ export default {
       axios
         .delete("/posts/" + id)
         .then((response) => {
-          console.log(response.data);
           this.$store.dispatch("getAllPosts");
           this.$router.push("/");
           alert("Le post a été bien supprimé!!!");
@@ -71,7 +70,6 @@ export default {
       axios
         .post("/posts/" + id)
         .then((response) => {
-          console.log(response);
           this.$store.dispatch("getAllPosts");
           this.$router.push("/");
         })

@@ -16,7 +16,6 @@ bcrypt.hash(req.body.password, 10)
     isAdmin: req.body.isAdmin
   };
   db.query("SELECT * FROM user WHERE email = ?", user.email, (error, results) => {
-      console.log(results);
       if (error) throw error;
       if (results[0]) return res.json({status: "error",
           error: " email déjà utilisé !"})
@@ -25,9 +24,7 @@ bcrypt.hash(req.body.password, 10)
           if (error) {
             res.json({ error });
           } else {
-            console.log(results);
             res.status(200).json({ user: user });
-            console.log(user);
           }
         });
       }
@@ -35,7 +32,7 @@ bcrypt.hash(req.body.password, 10)
 })
 .catch((error) => res.status(500).json({ error }));
 };
-// connexion : recherche utilisateur par mail + comparaison mot de passe
+// sécurité de connexion : recherche utilisateur par mail + comparaison mot de passe
 exports.login = (req, res, next) => {
 const { email, password } = req.body;
 if (!email || !password){
@@ -52,8 +49,6 @@ if (!email || !password){
           error: " email ou mot de passe incorrect !",
         });
       }else {
-        console.log(password);
-        console.log(results[0]);
         bcrypt
           .compare(password, results[0].password)
           .then((valid) => {
@@ -76,7 +71,6 @@ if (!email || !password){
             });
           })
           .catch((error) => {
-            console.log(error);
            return res.status(500).json( error )
           });
       }

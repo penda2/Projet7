@@ -1,3 +1,4 @@
+//création du router contenant toutes les routes affichés coté client selon l'authentification
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '@/store'
 

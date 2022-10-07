@@ -1,3 +1,4 @@
+//Création d'un application Vue, import de tous les élements fonctionnels à l'app à utiliser
 import Vue from 'vue'
 import {createApp, VueElement} from 'vue'
 import App from './App.vue'

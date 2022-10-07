@@ -126,6 +126,10 @@ input {
   border-radius: 10px;
   box-shadow: 2px 2px 5px #9d9d9d35;
 }
+.smallError {
+  color: #fd2d01;
+  margin-top: 3px;
+}
 .form-ctrl {
   display: flex;
   flex-direction: column;

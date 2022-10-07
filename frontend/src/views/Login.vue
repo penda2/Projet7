@@ -34,6 +34,7 @@
 </template>
 
 <script>
+  //import des outils nécessaires pour l'envoi du formulaire et le stockage des données dans le store
 import axios from "axios";
 import { mapMutations } from "vuex";
 
@@ -45,6 +46,7 @@ export default {
       password: "",
     };
   },
+
   methods: {
     ...mapMutations({
       setToken: "SET_TOKEN",

@@ -1,4 +1,4 @@
-// Import des packages nécessaires au projet aprés installation
+// Import des packages nécessaires au projet après installation
 const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
@@ -17,7 +17,7 @@ const app = express();
 
 app.use(helmet()); // Protège l'application express de certaines vulnérabilités des headers HTTP
 
-// Autorisation d'acces aux URL de l'API par réglage des entêtes
+// Autorisation d'acces aux URLS de l'API par réglage des entêtes
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(

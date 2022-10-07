@@ -46,7 +46,6 @@ export default {
           }
         })
         .then((response) => {
-          console.log(response.data);
           this.$router.push("/");
         })
         .catch((error) => {
@@ -58,10 +57,7 @@ export default {
     axios
       .get("/posts/" + this.$route.params.id)
       .then((response) => {
-        console.log("update res.data", response.data);
         const data = response.data.results[0];
-        console.log("data update:");
-        console.log(data);
         this.title = data.title;
         this.post = data.postBody;
         this.file = data.file;
